@@ -11,21 +11,26 @@ const file = readline.createInterface({
 
 connect(); // To the database
 
+function readFile(rows, callback){ 
+    file.on('line', function(line) {
+    const columns = line.split(',');
+    rows.push(new Voter({
+        first_name: columns[0],
+        last_name: columns[1],
+        zipcode: columns[2],
+        history: columns[3]
+        })
+    );
+    });
+    callback(rows);
+}
 
+function print(arr){
+    console.log(arr)
+}
 
-// Create an array of objects, so that each line of the file is represented by an object with three properties.
-const rows = [];
-file.on('line', function(line) {
-  const columns = line.split(',');
-  rows.push(new Voter({
-    first_name: columns[0],
-    last_name: columns[1],
-    zipcode: columns[2],
-    history: columns[3]
-    })
-  );
-  console.log(rows)
-});
+voters = []
+readFile(voters, print)
 
 
 // Reset the data
