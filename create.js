@@ -9,8 +9,8 @@ const file = readline.createInterface({
 
 connect(); 
 
-
 voter_data = []
+
 file.on('line', function(line) {
     const columns = line.split(',');
     voter_data.push(new Voter({
@@ -24,7 +24,7 @@ file.on('line', function(line) {
 
 file.on('close', function() {
     mongoose.connection.dropDatabase()
-        .then((voter_data) => voter_data.save())
+        .then(() => Promise.all(voter_data.map(voter => voter.save())))
         .then(() => mongoose.connection.close())
         .then(() => console.log('Database is ready.'))
         .catch(error => console.error(error.stack)); 
