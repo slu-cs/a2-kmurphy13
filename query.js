@@ -7,9 +7,9 @@ connect();
 
 const queries = [
 
-    Voter.countDocuments(find().where('zipcode').equals(13617).count()),
+    Voter.find().where('zipcode').equals(13617).count(),
     Voter.find().where('first_name').equals("STARR"),
-    Voter.countDocuments(find({ "history": /GE16/i })),
+    Voter.find({ "history": /GE16/i }).count(),
     Voter.find().sort("-last_name").limit(1),
     Voter.distinct('zipcode')
   
