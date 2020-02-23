@@ -13,7 +13,8 @@ query.exec(function(error, voters) {
 
 const queries = [
 
-    Voter.find().where('zipcode').equals(13617)
+    Voter.find().where('zipcode').equals(13617),
+    Voter.find().where('first_name').equals("STARR"),
   
   ];
   
@@ -21,6 +22,7 @@ const queries = [
   Promise.all(queries)
     .then(function(results) {
       console.log('Number of registered voters in Canton: ', results[0].length);
+      console.log('Full names of all registered voters whose first name is Starr: ', results[1].map(voter=> voter.first_name + voter.last_name));
       mongoose.connection.close();
     }).catch(error => console.error(error.stack));
 
