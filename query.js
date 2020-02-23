@@ -16,6 +16,7 @@ const queries = [
     Voter.find().where('zipcode').equals(13617),
     Voter.find().where('first_name').equals("STARR"),
     Voter.find({ "history": /GE16/i }),
+    Voter.sort("last_name"),
     Voter.distinct('zipcode')
   
   ];
@@ -26,7 +27,8 @@ const queries = [
       console.log('Number of registered voters in Canton: ', results[0].length);
       console.log('Full names of all registered voters whose first name is Starr: ', results[1].map(voter=> voter.first_name + " " +voter.last_name));
       console.log("Number of people who voted in the 2016 General Election: ", results[2].length);
-      console.log("Number of distinct zipcodes: ", results[3].length);
+      console.log("Final last name when sorted alphabetically: ", results[3][results[3].length -1 ]);
+      console.log("Number of distinct zipcodes: ", results[4].length);
       mongoose.connection.close();
     }).catch(error => console.error(error.stack));
 
