@@ -23,9 +23,8 @@ file.on('line', function(line) {
 });
 
 file.on('close', function() {
-    console.log(voter_data)
     mongoose.connection.dropDatabase()
-        .then(mongoose.collection.insertMany(voter_data))
+        .then((voter_data) => voter_data.save())
         .then(() => mongoose.connection.close())
         .then(() => console.log('Database is ready.'))
         .catch(error => console.error(error.stack)); 
