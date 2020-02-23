@@ -1,8 +1,6 @@
-// Define a plan for a collection
-
 const mongoose = require('mongoose');
 
-// Schema for a collection of professors
+// Schema for a collection of voters
 const Voter = new mongoose.Schema({
   first_name: String,
   last_name: String,
