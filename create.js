@@ -24,9 +24,10 @@ file.on('line', function(line) {
     history: columns[3]
     })
   );
+  console.log(rows)
 });
 
-console.log(rows)
+
 // Reset the data
 /* mongoose.connection.dropDatabase()
   .then(() => harcourt.save())
