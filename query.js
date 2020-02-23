@@ -5,13 +5,13 @@ const Voter = require('./schema');
 
 connect(); 
 
+// Queries 
 const queries = [
     Voter.find().where('zipcode').equals(13617),
     Voter.find().where('first_name').equals("STARR"),
     Voter.find({ "history": /GE16/i }),
     Voter.find().sort("-last_name").limit(1),
     Voter.distinct('zipcode')
-  
   ];
   
   // Run the queries in parallel

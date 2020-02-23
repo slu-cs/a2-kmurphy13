@@ -9,8 +9,10 @@ const file = readline.createInterface({
 
 connect(); 
 
+// Empty array of voter data
 voter_data = []
 
+// Read the csv and put information into array 
 file.on('line', function(line) {
     const columns = line.split(',');
     voter_data.push(new Voter({
@@ -22,6 +24,7 @@ file.on('line', function(line) {
     );
 });
 
+// Close the file and save the voters to the database
 file.on('close', function() {
     mongoose.connection.dropDatabase()
         .then(() => Promise.all(voter_data.map(voter => voter.save())))
